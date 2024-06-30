@@ -23,10 +23,11 @@ import (
     dbPort := os.Getenv("DB_PORT")
     dbUser := os.Getenv("DB_USER")
     dbName := os.Getenv("DB_NAME")
+    dbPassword := os.Getenv("DB_PASSWORD")
 
 	var err error
    
-	dsn := fmt.Sprintf("%s:@tcp(%s:%s)/%s", dbUser, dbHost, dbPort, dbName)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPassword, dbHost, dbPort, dbName)
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
    
 	if err != nil {
