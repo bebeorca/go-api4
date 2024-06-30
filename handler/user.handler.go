@@ -17,6 +17,8 @@ func UserHandlerRead(c *fiber.Ctx) error{
 		log.Fatal(result.Error)
 	}
 
-	return c.Status(200).JSON(users)
+	return c.Status(200).JSON(fiber.Map{
+		"msg": "Selamat datang di Railway. Ini API-mu",
+	})
 
 }
