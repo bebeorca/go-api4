@@ -7,6 +7,7 @@ import (
 	"github.com/bebeorca/go-api4/database/migrations"
 	"github.com/bebeorca/go-api4/routes"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main(){
@@ -14,6 +15,11 @@ func main(){
 	migrations.RunMigration()
 
 	app := fiber.New()
+
+	app.Use(cors.New(cors.Config{
+        AllowOrigins: "*", // Allow all origins
+        AllowHeaders: "Origin, Content-Type, Accept",
+    }))
 
 	routes.RouteInit(app)
 
