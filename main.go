@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+	"log"
 	"github.com/bebeorca/go-api4/database"
 	"github.com/bebeorca/go-api4/database/migrations"
 	"github.com/bebeorca/go-api4/routes"
@@ -10,11 +12,17 @@ import (
 func main(){
 	database.DatabaseInit()
 	migrations.RunMigration()
-	
+
 	app := fiber.New()
 
 	routes.RouteInit(app)
 
 
-	app.Listen(":8080")
+	port := os.Getenv("PORT")
+
+	if port == ""{
+		port = "3000"
+	}
+
+	log.Fatal(app.Listen("0.0.0.0:" + port))
 }
