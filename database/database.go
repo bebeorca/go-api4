@@ -27,7 +27,7 @@ func DatabaseInit() {
 	
 	var err error
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?ssl-mode=REQUIRED", dbUser, dbPassword, dbHost, dbPort, dbName)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPassword, dbHost, dbPort, dbName)
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
