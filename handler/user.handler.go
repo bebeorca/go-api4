@@ -32,14 +32,12 @@ func UserHandlerCreate(c *fiber.Ctx) error {
 		return err
 	}
 
-	tm := time.Now()
-
 	newUser := entity.User{
 		Nama: user.Nama,
 		Address: user.Address,
 		Phone: user.Phone,
 		Email: user.Email,
-		CreatedAt: tm.String(),
+		CreatedAt: time.Now().String(),
 	}
 
 	errCreating := database.DB.Create(&newUser).Error
