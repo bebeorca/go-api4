@@ -32,15 +32,14 @@ func UserHandlerCreate(c *fiber.Ctx) error {
 		return err
 	}
 
-	currentTime := time.Now().Local()
-	formattedTime := currentTime.Format("2006-01-02 15:04:05")
+	currentTimeLocal := time.Now().Local().Format("2006-01-02 15:04:05")
 
 	newUser := entity.User{
 		Nama: user.Nama,
 		Address: user.Address,
 		Phone: user.Phone,
 		Email: user.Email,
-		CreatedAt: formattedTime,
+		CreatedAt: currentTimeLocal,
 	}
 
 	errCreating := database.DB.Create(&newUser).Error
