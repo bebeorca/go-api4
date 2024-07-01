@@ -3,6 +3,7 @@ package handler
 import (
 	//"fmt"
 	"log"
+	"time"
 	// "time"
 
 	"github.com/bebeorca/go-api4/database"
@@ -37,6 +38,7 @@ func UserHandlerCreate(c *fiber.Ctx) error {
 		Address: user.Address,
 		Phone: user.Phone,
 		Email: user.Email,
+		CreatedAt: time.Now().Local().Format("2006-01-02 15:04:05"),
 	}
 
 	errCreating := database.DB.Create(&newUser).Error
