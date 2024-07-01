@@ -38,7 +38,7 @@ func UserHandlerCreate(c *fiber.Ctx) error {
 		Address: user.Address,
 		Phone: user.Phone,
 		Email: user.Email,
-		CreatedAt: time.Now().Local().Format("2006-01-02 15:04:05"),
+		CreatedAt: time.Now().Local().Format("2006-01-02"),
 	}
 
 	errCreating := database.DB.Create(&newUser).Error
