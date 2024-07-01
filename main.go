@@ -11,8 +11,6 @@ import (
 )
 
 func main(){
-	database.DatabaseInit()
-	migrations.RunMigration()
 
 	app := fiber.New()
 
@@ -21,6 +19,9 @@ func main(){
         AllowHeaders:     "Origin,Content-Type,Accept,Content-Length,Accept-Language,Accept-Encoding,Connection,Access-Control-Allow-Origin",
         AllowMethods:     "GET,POST,HEAD,PUT,DELETE,PATCH,OPTIONS",
     }))
+
+	database.DatabaseInit()
+	migrations.RunMigration()
 
 	routes.RouteInit(app)
 
