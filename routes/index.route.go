@@ -6,7 +6,6 @@ import (
 )
 
 func RouteInit(r *fiber.App){
-	api := r.Group("/api")
-	api.Get("/", handler.UserHandlerRead)
-	api.Post("/register", handler.UserHandlerCreate)
+	r.Get("/", handler.UserHandlerRead)
+	r.Post("/register", handler.UserHandlerCreate)
 }
