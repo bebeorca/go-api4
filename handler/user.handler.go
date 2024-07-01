@@ -41,7 +41,7 @@ func UserHandlerCreate(c *fiber.Ctx) error {
 
 	if errCreating != nil{
 		return c.Status(500).JSON(fiber.Map{
-			"message": "failed storing data.",
+			"message": errCreating,
 		})
 	}
 
