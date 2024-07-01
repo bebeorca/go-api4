@@ -13,6 +13,6 @@ type User struct {
 	Phone     string         `gorm:"type:varchar(255)" json:"phone"`
 	Email     string         `gorm:"type:varchar(255)" json:"email"`
 	CreatedAt time.Time      `json:"created_at"`
-	UpdateAt  time.Time      `json:"updated_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
 	DeletedAt gorm.DeletedAt `json:"deleted_at" gorm:"index"`
 }
