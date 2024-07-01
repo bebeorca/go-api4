@@ -5,6 +5,7 @@ import (
 
 	"github.com/bebeorca/go-api4/database"
 	"github.com/bebeorca/go-api4/models/entity"
+	"github.com/bebeorca/go-api4/models/request"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -18,7 +19,35 @@ func UserHandlerRead(c *fiber.Ctx) error{
 	}
 
 	return c.Status(200).JSON(fiber.Map{
-		"msg": users,
+		"data": users,
+	})
+
+}
+
+func UserHandlerCreate(c *fiber.Ctx) error {
+	user := new(request.UserCreateRequest)
+	if err := c.BodyParser(user); err != nil{
+		return err
+	}
+
+	newUser := entity.User{
+		Nama: user.Nama,
+		Address: user.Address,
+		Phone: user.Phone,
+		Email: user.Email,
+	}
+
+	errCreating := database.DB.Create(&newUser).Error
+
+	if errCreating != nil{
+		return c.Status(500).JSON(fiber.Map{
+			"message": "failed storing data.",
+		})
+	}
+
+	return c.JSON(fiber.Map{
+		"message": "Stored!",
+		"data": newUser,
 	})
 
 }
