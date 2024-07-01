@@ -39,7 +39,7 @@ func UserHandlerCreate(c *fiber.Ctx) error {
 		Address: user.Address,
 		Phone: user.Phone,
 		Email: user.Email,
-		CreatedAt: tm.GoString(),
+		CreatedAt: tm.String(),
 	}
 
 	errCreating := database.DB.Create(&newUser).Error
