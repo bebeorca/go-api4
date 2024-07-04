@@ -22,7 +22,7 @@ func UploadPost(c *fiber.Ctx) error {
 	errValidate := validate.Struct(post)
 	if errValidate != nil {
 		return c.Status(400).JSON(fiber.Map{
-			"message": "failded",
+			"message": "failed",
 			"error":   errValidate.Error(),
 		})
 	}
