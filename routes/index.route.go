@@ -6,6 +6,8 @@ import (
 )
 
 func RouteInit(r *fiber.App){
+	r.Static("/images", "./public/uploads")
 	r.Get("/", handler.UserHandlerRead)
 	r.Post("/register", handler.UserHandlerCreate)
+	r.Post("/upload", handler.UploadPost)
 }

@@ -15,14 +15,23 @@ import (
 func UserHandlerRead(c *fiber.Ctx) error{
 
 	var users []entity.User
-	result := database.DB.Find(&users)
+	var posts []entity.Post
 
-	if result.Error != nil {
-		log.Fatal(result.Error)
+	uresult := database.DB.Find(&users)
+	presult := database.DB.Find(&posts)
+
+
+	if uresult.Error != nil {
+		log.Fatal(uresult.Error)
+	}
+
+	if presult.Error != nil {
+		log.Fatal(presult.Error)
 	}
 
 	return c.Status(200).JSON(fiber.Map{
 		"data": users,
+		"image": posts,
 	})
 
 }
