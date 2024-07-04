@@ -24,7 +24,6 @@ func main(){
 	migrations.RunMigration()
 
 	routes.RouteInit(app)
-	app.Static("/uploads", "./public/uploads")
 
 
 	port := os.Getenv("PORT")
