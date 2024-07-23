@@ -5,7 +5,6 @@ import (
 
 	"github.com/bebeorca/go-api4/database"
 	"github.com/bebeorca/go-api4/models/entity"
-	"github.com/bebeorca/go-api4/models/request"
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/gorm"
 )
@@ -50,14 +49,6 @@ func GetToken(c *fiber.Ctx) error {
 
 func RedeemToken(c *fiber.Ctx) error {
 
-	tokenRequest := new(request.TokenUpdateRequest)
-
-	if err := c.BodyParser(tokenRequest); err != nil {
-		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
-			"message": "Bad request",
-		})
-	}
-
 	var token entity.Token
 	_token := c.Params("token")
 
@@ -79,7 +70,7 @@ func RedeemToken(c *fiber.Ctx) error {
 			"message": "Token sudah digunakan/expired.",
 		})
 	}else{
-		token.IsRedeemed = tokenRequest.IsRedeemed
+		token.IsRedeemed = true
 	}
 
 	errUpdate := database.DB.Save(&token).Error
