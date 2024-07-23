@@ -8,7 +8,11 @@ import (
 )
 
 func RunMigration() {
-	err := database.DB.AutoMigrate(&entity.User{}, &entity.Post{})
+	err := database.DB.AutoMigrate(
+		&entity.User{},
+		&entity.Post{},
+		&entity.Token{},
+	)
 
 	if err != nil {
 		log.Fatal(err)
