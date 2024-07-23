@@ -66,7 +66,7 @@ func RedeemToken(c *fiber.Ctx) error {
 	}
 
 	if token.IsRedeemed {
-		return c.JSON(fiber.Map{
+		return c.Status(409).JSON(fiber.Map{
 			"message": "Token sudah digunakan/expired.",
 		})
 	}else{
