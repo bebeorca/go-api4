@@ -13,5 +13,6 @@ func RouteInit(r *fiber.App){
 	r.Post("/upload", handler.UploadPost)
 
 	r.Get("/token", handler.GetToken)
+	r.Post("/token/create", handler.CreateToken)
 	r.Put("/token/:token", handler.RedeemToken)
 }

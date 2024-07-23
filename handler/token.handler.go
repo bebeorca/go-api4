@@ -10,6 +10,30 @@ import (
 	"gorm.io/gorm"
 )
 
+func CreateToken(c *fiber.Ctx) error {
+	user := new(entity.Token)
+	if err := c.BodyParser(user); err != nil{
+		return err
+	}
+
+	newToken := entity.Token{
+		Token: user.Token,
+	}
+
+	errCreating := database.DB.Create(&newToken).Error
+
+	if errCreating != nil{
+		return c.Status(500).JSON(fiber.Map{
+			"message": errCreating,
+		})
+	}
+
+	return c.JSON(fiber.Map{
+		"message": "Stored!",
+		"data": newToken,
+	}) 
+}
+
 func GetToken(c *fiber.Ctx) error {
 	var token []entity.Token
 
