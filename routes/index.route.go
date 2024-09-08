@@ -3,7 +3,7 @@ package routes
 import (
 	"github.com/bebeorca/go-api4/config"
 	"github.com/bebeorca/go-api4/handler"
-	"github.com/bebeorca/go-api4/middleware"
+	// "github.com/bebeorca/go-api4/middleware"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -12,7 +12,7 @@ func RouteInit(r *fiber.App){
 
 	r.Post("/login", handler.LoginHandler)
 
-	r.Get("/", middleware.Auth, handler.UserHandlerRead)
+	r.Get("/", handler.UserHandlerRead)
 	r.Post("/register", handler.UserHandlerCreate)
 	r.Post("/upload", handler.UploadPost)
 
