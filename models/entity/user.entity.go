@@ -12,6 +12,7 @@ type User struct {
 	Address   string         `gorm:"type:varchar(255)" json:"address"`
 	Phone     string         `gorm:"type:varchar(255)" json:"phone"`
 	Email     string         `gorm:"type:varchar(255)" json:"email"`
+	Password  string         `json:"-" gorm:"column:password"`
 	CreatedAt string         `gorm:"type:varchar(255)" json:"created_at"`
 	UpdatedAt string         `gorm:"type:varchar(255)" json:"updated_at"`
 	DeletedAt gorm.DeletedAt `json:"deleted_at" gorm:"index"`
